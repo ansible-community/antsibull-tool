@@ -9,46 +9,16 @@
 from __future__ import annotations
 
 import json
-import typing as t
-from dataclasses import dataclass
 from pathlib import Path
 
+import pydantic as p
 from antsibull_fileutils.yaml import load_yaml_file
 
 
-@dataclass
-class CollectionDetails:
+class CollectionDetails(p.BaseModel):
     namespace: str
     name: str
-    dependencies: dict[str, str]
-
-    @staticmethod
-    def _parse_str(data: dict, key: t.Any) -> str:
-        value = data.get(key)
-        if not isinstance(value, str):
-            raise ValueError(f"{key} is not a string, but {type(value)}")
-        return value
-
-    @classmethod
-    def load(cls, data: dict) -> CollectionDetails:
-        namespace = cls._parse_str(data, "namespace")
-        name = cls._parse_str(data, "name")
-
-        dependencies = {}
-        deps = data.get("dependencies")
-        if deps is not None:
-            if not isinstance(deps, dict):
-                raise ValueError(f"dependencies is not a mapping, but {type(deps)}")
-            for k, v in deps.items():
-                if not isinstance(k, str):
-                    raise ValueError(f"dependencies key {k!r} is not a string")
-                if not isinstance(v, str):
-                    raise ValueError(f"dependencies.{k} value {v!r} is not a string")
-                dependencies[k] = v
-
-        return CollectionDetails(
-            namespace=namespace, name=name, dependencies=dependencies
-        )
+    dependencies: dict[str, str] = {}
 
 
 def load_collection_details(path: Path) -> CollectionDetails:
@@ -58,7 +28,7 @@ def load_collection_details(path: Path) -> CollectionDetails:
             data = load_yaml_file(galaxy_yml_path)
             if not isinstance(data, dict):
                 raise ValueError("galaxy.yml is not a global mapping")
-            return CollectionDetails.load(data)
+            return CollectionDetails.model_validate(data)
         except Exception as exc:
             raise ValueError(
                 f"Error while loading collection details from {galaxy_yml_path}: {exc}"
@@ -73,7 +43,7 @@ def load_collection_details(path: Path) -> CollectionDetails:
                     data.get("collection_info"), dict
                 ):
                     raise ValueError("Cannot find collection_info in MANIFEST.json")
-                return CollectionDetails.load(data["collection_info"])
+                return CollectionDetails.model_validate(data["collection_info"])
         except Exception as exc:
             raise ValueError(
                 f"Error while loading collection details from {manifest_json_path}: {exc}"
