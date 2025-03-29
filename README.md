@@ -5,6 +5,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
 # antsibull-tool -- Ansible Community Toolkit
+[![Documentation](https://img.shields.io/badge/docs-brightgreen.svg)](https://ansible.readthedocs.io/projects/antsibull-tool/changelog/)
 [![Discuss on Matrix at #antsibull:ansible.com](https://img.shields.io/matrix/antsibull:ansible.com.svg?server_fqdn=ansible-accounts.ems.host&label=Discuss%20on%20Matrix%20at%20%23antsibull:ansible.com&logo=matrix)](https://matrix.to/#/#antsibull:ansible.com)
 [![Nox badge](https://github.com/ansible-community/antsibull-tool/actions/workflows/nox.yml/badge.svg)](https://github.com/ansible-community/antsibull-tool/actions/workflows/nox.yml)
 [![Codecov badge](https://img.shields.io/codecov/c/github/ansible-community/antsibull-tool)](https://codecov.io/gh/ansible-community/antsibull-tool)
@@ -12,7 +13,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 Toolkit for the Ansible community. This is mainly the `antsibull-tool` command. Please check out the [documentation](https://ansible.readthedocs.io/projects/antsibull-tool/) for more information.
 
-You can find a list of changes in [the antsibull-tool changelog](https://github.com/ansible-community/antsibull-tool/blob/main/CHANGELOG.md).
+You can find a list of changes in [the antsibull-tool changelog](https://ansible.readthedocs.io/projects/antsibull-tool/changelog/).
 
 antsibull-tool is covered by the [Ansible Code of Conduct](https://docs.ansible.com/ansible/latest/community/code_of_conduct.html).
 

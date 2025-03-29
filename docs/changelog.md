@@ -1,1 +1,1 @@
-../CHANGELOG.md
+# antsibull\-tool \-\- Ansible Community Toolkit
