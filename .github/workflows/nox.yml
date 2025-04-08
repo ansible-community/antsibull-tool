@@ -43,10 +43,10 @@ jobs:
             packages: ""
     name: "Run nox ${{ matrix.session }} session"
     steps:
-      - name: Check out antsibull-docs
+      - name: Check out antsibull-tool
         uses: actions/checkout@v4
         with:
-          path: antsibull-docs
+          path: antsibull-tool
           persist-credentials: false
       - name: Check out dependent project antsibull-core
         uses: actions/checkout@v4
