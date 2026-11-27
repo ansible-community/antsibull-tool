@@ -58,7 +58,7 @@ email = "maxwell@gtmx.me"
 [project.scripts]
 antsibull-tool = "antsibull_tool.cli:main"
 
-[project.optional-dependencies]
+[dependency-groups]
 codeqa = [
     "antsibull-changelog",
     "flake8 >= 3.8.0",
@@ -87,10 +87,10 @@ typing = [
 ]
 dev = [
     # Used by nox sessions
-    "antsibull-tool[codeqa]",
-    "antsibull-tool[formatters]",
-    "antsibull-tool[test]",
-    "antsibull-tool[typing]",
+    {include-group = "codeqa"},
+    {include-group = "formatters"},
+    {include-group = "test"},
+    {include-group = "typing"},
     # misc
     "nox",
 ]
